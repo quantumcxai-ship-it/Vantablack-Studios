@@ -1,3 +1,5 @@
+import { AnimatedContainer, StaggeredList } from "@/components/animations";
+
 const JourneySection = () => {
   const cards = [
     {
@@ -22,51 +24,55 @@ const JourneySection = () => {
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col gap-16">
           {/* Header Section */}
-          <div className="flex flex-col lg:flex-row lg:justify-between lg:items-end gap-8 lg:gap-26">
-            <div className="flex-1 max-w-2xl">
-              <div className="flex flex-col gap-4">
-                <span className="text-hero-foreground text-base font-normal leading-relaxed">
-                  Our Journey
-                </span>
-                <h2 className="text-hero-foreground text-4xl lg:text-5xl xl:text-6xl font-normal leading-tight">
-                  Tailored AI systems, built for finance
-                </h2>
+          <AnimatedContainer direction="up" delay={0.1}>
+            <div className="flex flex-col lg:flex-row lg:justify-between lg:items-end gap-8 lg:gap-26">
+              <div className="flex-1 max-w-2xl">
+                <div className="flex flex-col gap-4">
+                  <span className="text-hero-foreground text-base font-normal leading-relaxed">
+                    Our Journey
+                  </span>
+                  <h2 className="text-hero-foreground text-4xl lg:text-5xl xl:text-6xl font-normal leading-tight">
+                    Tailored AI systems, built for finance
+                  </h2>
+                </div>
+              </div>
+              <div className="flex-1 max-w-lg">
+                <p className="text-hero-muted text-base font-normal leading-relaxed">
+                  Delivering the Latest AI Advancements to Solve Your Specific Goals and Challenges, Ensuring Enhanced Efficiency and Insight Growth.
+                </p>
               </div>
             </div>
-            <div className="flex-1 max-w-lg">
-              <p className="text-hero-muted text-base font-normal leading-relaxed">
-                Delivering the Latest AI Advancements to Solve Your Specific Goals and Challenges, Ensuring Enhanced Efficiency and Insight Growth.
-              </p>
-            </div>
-          </div>
+          </AnimatedContainer>
 
           {/* Cards Section */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <StaggeredList
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+            itemClassName="group"
+            staggerDelay={0.15}
+          >
             {cards.map((card, index) => (
-              <div key={index} className="group">
-                <div className="p-4 pb-8 rounded-2xl border border-hero-secondary-border bg-hero-secondary-bg/5 backdrop-blur-sm hover:bg-hero-secondary-bg/10 transition-all duration-300">
-                  {/* Card Image */}
-                  <div className="relative w-full h-64 mb-6 overflow-hidden rounded-xl">
-                    <img 
-                      src={card.image}
-                      alt={card.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                    />
-                  </div>
-                  
-                  {/* Card Content */}
-                  <div className="flex flex-col items-center text-center gap-2">
-                    <h3 className="text-hero-foreground text-2xl font-normal leading-tight">
-                      {card.title}
-                    </h3>
-                    <p className="text-hero-muted opacity-70 text-base font-normal leading-relaxed">
-                      {card.description}
-                    </p>
-                  </div>
+              <div key={index} className="p-4 pb-8 rounded-2xl border border-hero-secondary-border bg-hero-secondary-bg/5 backdrop-blur-sm hover:bg-hero-secondary-bg/10 transition-all duration-300 h-full">
+                {/* Card Image */}
+                <div className="relative w-full h-64 mb-6 overflow-hidden rounded-xl">
+                  <img 
+                    src={card.image}
+                    alt={card.title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
+                </div>
+                
+                {/* Card Content */}
+                <div className="flex flex-col items-center text-center gap-2">
+                  <h3 className="text-hero-foreground text-2xl font-normal leading-tight">
+                    {card.title}
+                  </h3>
+                  <p className="text-hero-muted opacity-70 text-base font-normal leading-relaxed">
+                    {card.description}
+                  </p>
                 </div>
               </div>
             ))}
-          </div>
+          </StaggeredList>
         </div>
       </div>
     </section>

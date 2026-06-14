@@ -1,4 +1,5 @@
 import { Star, Quote } from "lucide-react";
+import { AnimatedContainer, StaggeredList } from "@/components/animations";
 
 const TestimonialSection = () => {
   const testimonials = [
@@ -32,64 +33,68 @@ const TestimonialSection = () => {
     <section className="w-full py-12 lg:py-8 px-4 bg-[#050505]">
       <div className="max-w-7xl mx-auto">
         {/* Header Section */}
-        <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-3 p-4 bg-hero-badge-bg border border-hero-badge-border rounded-2xl backdrop-blur-md mb-8">
-            <Quote className="w-6 h-6 text-hero-foreground" />
-            <span className="text-hero-badge-text text-sm font-normal leading-relaxed">
-              Customer Stories
-            </span>
+        <AnimatedContainer direction="up" delay={0.1}>
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center gap-3 p-4 bg-hero-badge-bg border border-hero-badge-border rounded-2xl backdrop-blur-md mb-8">
+              <Quote className="w-6 h-6 text-hero-foreground" />
+              <span className="text-hero-badge-text text-sm font-normal leading-relaxed">
+                Customer Stories
+              </span>
+            </div>
+            
+            <h2 className="text-hero-foreground text-4xl lg:text-5xl xl:text-6xl font-normal leading-tight mb-6">
+              Trusted by industry leaders
+            </h2>
+            
+            <p className="text-hero-muted text-base lg:text-lg font-normal leading-relaxed max-w-2xl mx-auto">
+              See how companies worldwide are transforming their operations with our AI-powered platform.
+            </p>
           </div>
-          
-          <h2 className="text-hero-foreground text-4xl lg:text-5xl xl:text-6xl font-normal leading-tight mb-6">
-            Trusted by industry leaders
-          </h2>
-          
-          <p className="text-hero-muted text-base lg:text-lg font-normal leading-relaxed max-w-2xl mx-auto">
-            See how companies worldwide are transforming their operations with our AI-powered platform.
-          </p>
-        </div>
+        </AnimatedContainer>
 
         {/* Testimonials Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <StaggeredList
+          className="grid grid-cols-1 lg:grid-cols-3 gap-8"
+          itemClassName="group"
+          staggerDelay={0.15}
+        >
           {testimonials.map((testimonial, index) => (
-            <div key={index} className="group">
-              <div className="relative overflow-hidden rounded-[30px] border border-hero-secondary-border shadow-lg backdrop-blur-sm h-full" style={{backgroundColor: 'rgba(11, 11, 12, 0.77)'}}>
-                <div className="p-8 flex flex-col h-full">
-                  {/* Rating Stars */}
-                  <div className="flex items-center gap-1 mb-6">
-                    {Array.from({ length: testimonial.rating }).map((_, starIndex) => (
-                      <Star key={starIndex} className="w-5 h-5 fill-hero-foreground text-hero-foreground" />
-                    ))}
+            <div key={index} className="relative overflow-hidden rounded-[30px] border border-hero-secondary-border shadow-lg backdrop-blur-sm h-full" style={{backgroundColor: 'rgba(11, 11, 12, 0.77)'}}>
+              <div className="p-8 flex flex-col h-full">
+                {/* Rating Stars */}
+                <div className="flex items-center gap-1 mb-6">
+                  {Array.from({ length: testimonial.rating }).map((_, starIndex) => (
+                    <Star key={starIndex} className="w-5 h-5 fill-hero-foreground text-hero-foreground" />
+                  ))}
+                </div>
+
+                {/* Quote */}
+                <blockquote className="text-hero-foreground text-base lg:text-lg font-normal leading-relaxed mb-8 flex-grow">
+                  "{testimonial.content}"
+                </blockquote>
+
+                {/* Author Info */}
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 rounded-full overflow-hidden bg-hero-secondary-bg border border-hero-secondary-border">
+                    <img 
+                      src={testimonial.image} 
+                      alt={testimonial.name}
+                      className="w-full h-full object-cover"
+                    />
                   </div>
-
-                  {/* Quote */}
-                  <blockquote className="text-hero-foreground text-base lg:text-lg font-normal leading-relaxed mb-8 flex-grow">
-                    "{testimonial.content}"
-                  </blockquote>
-
-                  {/* Author Info */}
-                  <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 rounded-full overflow-hidden bg-hero-secondary-bg border border-hero-secondary-border">
-                      <img 
-                        src={testimonial.image} 
-                        alt={testimonial.name}
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
-                    <div>
-                      <h4 className="text-hero-foreground text-base font-normal leading-relaxed">
-                        {testimonial.name}
-                      </h4>
-                      <p className="text-hero-muted text-sm font-normal leading-relaxed">
-                        {testimonial.role}
-                      </p>
-                    </div>
+                  <div>
+                    <h4 className="text-hero-foreground text-base font-normal leading-relaxed">
+                      {testimonial.name}
+                    </h4>
+                    <p className="text-hero-muted text-sm font-normal leading-relaxed">
+                      {testimonial.role}
+                    </p>
                   </div>
                 </div>
               </div>
             </div>
           ))}
-        </div>
+        </StaggeredList>
       </div>
     </section>
   );

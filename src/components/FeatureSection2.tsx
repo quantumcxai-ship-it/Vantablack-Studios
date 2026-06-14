@@ -1,4 +1,5 @@
 import { Settings, Bot } from "lucide-react";
+import { AnimatedContainer, AnimatedItem } from "@/components/animations";
 
 const FeatureSection2 = () => {
   return (
@@ -9,30 +10,32 @@ const FeatureSection2 = () => {
           <div className="flex-1 max-w-2xl">
             <div className="flex flex-col lg:space-y-20">
               {/* Header Section */}
-              <div className="space-y-5 order-1">
-                {/* Badge */}
-                <div className="inline-flex items-center gap-3 p-4 bg-hero-badge-bg border border-hero-badge-border rounded-2xl backdrop-blur-md">
-                  <div className="w-6 h-6 relative">
-                    <Settings className="w-6 h-6 text-hero-foreground" />
+              <AnimatedContainer direction="right" delay={0.1}>
+                <div className="space-y-5 order-1">
+                  {/* Badge */}
+                  <div className="inline-flex items-center gap-3 p-4 bg-hero-badge-bg border border-hero-badge-border rounded-2xl backdrop-blur-md">
+                    <div className="w-6 h-6 relative">
+                      <Settings className="w-6 h-6 text-hero-foreground" />
+                    </div>
+                    <span className="text-hero-badge-text text-sm font-normal leading-relaxed">
+                      Powered by AI
+                    </span>
                   </div>
-                  <span className="text-hero-badge-text text-sm font-normal leading-relaxed">
-                    Powered by AI
-                  </span>
+
+                  {/* Main Heading */}
+                  <h2 className="text-hero-foreground text-4xl lg:text-5xl xl:text-6xl font-normal leading-tight">
+                    Accelerating workflows through automation
+                  </h2>
+
+                  {/* Description */}
+                  <p className="text-hero-muted text-base lg:text-lg font-normal leading-relaxed max-w-md">
+                    Smart automation reduces manual tasks by 40%, streamlining operations for faster results.
+                  </p>
                 </div>
-
-                {/* Main Heading */}
-                <h2 className="text-hero-foreground text-4xl lg:text-5xl xl:text-6xl font-normal leading-tight">
-                  Accelerating workflows through automation
-                </h2>
-
-                {/* Description */}
-                <p className="text-hero-muted text-base lg:text-lg font-normal leading-relaxed max-w-md">
-                  Smart automation reduces manual tasks by 40%, streamlining operations for faster results.
-                </p>
-              </div>
+              </AnimatedContainer>
 
               {/* Image Container - Mobile Only */}
-              <div className="flex-1 max-w-2xl lg:hidden order-2 my-8">
+              <AnimatedItem direction="up" delay={0.2} className="flex-1 max-w-2xl lg:hidden order-2 my-8">
                 <div className="relative w-full aspect-square overflow-hidden rounded-[30px]">
                   {/* Background Image */}
                   <img 
@@ -50,10 +53,10 @@ const FeatureSection2 = () => {
                     />
                   </div>
                 </div>
-              </div>
+              </AnimatedItem>
 
               {/* Features List */}
-              <div className="space-y-6 max-w-md order-3">
+              <AnimatedContainer direction="right" delay={0.3} className="space-y-6 max-w-md order-3">
                 <div className="flex items-center gap-6">
                   <div className="w-6 h-6 flex-shrink-0">
                     <Bot className="w-6 h-6 text-hero-foreground" />
@@ -71,12 +74,12 @@ const FeatureSection2 = () => {
                     40% Faster Execution
                   </span>
                 </div>
-              </div>
+              </AnimatedContainer>
             </div>
           </div>
 
-          {/* Right Image Container - Desktop Only - Now on left for desktop */}
-          <div className="hidden lg:block flex-1 max-w-2xl my-8">
+          {/* Right Image Container - Desktop Only */}
+          <AnimatedItem direction="left" delay={0.2} className="hidden lg:block flex-1 max-w-2xl my-8">
             <div className="relative w-full aspect-square lg:h-[577px] lg:aspect-auto overflow-hidden rounded-[30px]">
               {/* Background Image */}
               <img 
@@ -94,7 +97,7 @@ const FeatureSection2 = () => {
                 />
               </div>
             </div>
-          </div>
+          </AnimatedItem>
         </div>
       </div>
     </section>

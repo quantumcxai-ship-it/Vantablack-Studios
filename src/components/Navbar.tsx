@@ -1,84 +1,79 @@
 import { useState } from "react";
-import { Button } from "@/components/ui/button";
+import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
-import { Link } from "react-router-dom";
 
-const Navbar = () => {
+export const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const location = useLocation();
+  const isHomePage = location.pathname === "/";
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
   const navLinks = [
-    { name: "Features", href: "#features" },
-    { name: "Solutions", href: "#solutions" },
-    { name: "Pricing", href: "#pricing" },
-    { name: "About", href: "/about" },
-    { name: "Contact", href: "#contact" },
+    { name: "Home", href: "/" },
+    { name: "Projects", href: "/projects" },
+    { name: "Studio", href: "/studio" },
+    { name: "Journal", href: "/journal" }
   ];
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md" style={{ backgroundColor: 'rgba(6, 6, 6, 0.8)' }}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <nav 
+      className={`absolute top-6 left-1/2 -translate-x-1/2 w-[90%] max-w-5xl z-50 backdrop-blur-xl border border-accent/15 shadow-[0_10px_30px_rgba(0,0,0,0.5)] transition-all duration-300 ${
+        isMobileMenuOpen ? 'rounded-2xl' : 'rounded-full'
+      } ${isHomePage ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}
+      style={{
+        background: "rgba(0, 0, 0, 0.65)"
+      }}
+    >
+      <div className="w-full px-6 md:px-10">
         <div className="flex items-center justify-between h-16">
-          {/* Logo */}
-          <div className="flex items-center gap-2">
-            <Link to="/">
-              <img 
-                src="/lovable-uploads/25b3039d-5f98-460a-9606-1510946f155d.png" 
-                alt="Logo" 
-                className="h-8 w-auto brightness-0 invert"
-              />
+          
+          {/* Logo (Typography-focused Luxury Logo with Visual Weight) */}
+          <div className="flex items-center">
+            <Link to="/" className="flex items-center tracking-widest hover:opacity-90 transition-opacity duration-300 select-none">
+              <span className="font-display text-base md:text-lg font-bold text-foreground tracking-[0.15em] uppercase">Vanta</span>
+              <span className="font-mono text-[9px] md:text-[10px] tracking-[0.1em] bg-accent text-black px-2 py-0.5 ml-1.5 font-bold uppercase rounded-[2px] shadow-[0_2px_4px_rgba(0,0,0,0.3)] translate-y-[1px]">Black</span>
             </Link>
           </div>
 
           {/* Desktop Navigation */}
           <div className="hidden md:block">
-            <div className="ml-10 flex items-baseline space-x-4">
+            <div className="flex items-center space-x-10">
               {navLinks.map((link) => (
-                link.href.startsWith('/') ? (
-                  <Link
-                    key={link.name}
-                    to={link.href}
-                    className="text-hero-muted hover:text-hero-foreground px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200"
-                  >
-                    {link.name}
-                  </Link>
-                ) : (
-                  <a
-                    key={link.name}
-                    href={link.href}
-                    className="text-hero-muted hover:text-hero-foreground px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200"
-                  >
-                    {link.name}
-                  </a>
-                )
+                <Link
+                  key={link.name}
+                  to={link.href}
+                  className="font-body text-[11px] tracking-widest text-muted-foreground hover:text-accent uppercase transition-colors duration-300"
+                >
+                  {link.name}
+                </Link>
               ))}
             </div>
           </div>
 
-          {/* Desktop CTA Buttons */}
-          <div className="hidden md:flex items-center space-x-4">
-            <Button variant="ghost" className="text-hero-muted hover:text-hero-foreground">
-              Sign In
-            </Button>
-            <Button variant="hero" size="sm" className="rounded-[10px]">
-              Get Started
-            </Button>
+          {/* Contact Button */}
+          <div className="hidden md:flex items-center">
+            <Link 
+              to="/contact"
+              className="inline-flex items-center justify-center px-5 py-2 border border-accent/30 hover:border-accent font-body text-[9px] tracking-widest uppercase transition-colors duration-300 bg-accent/5 hover:bg-accent/15 text-accent rounded-full"
+            >
+              Start Inquiry
+            </Link>
           </div>
 
           {/* Mobile menu button */}
           <div className="md:hidden">
             <button
               onClick={toggleMobileMenu}
-              className="text-hero-foreground hover:text-hero-muted p-2 rounded-md transition-colors duration-200"
+              className="text-foreground hover:text-accent p-2 transition-colors duration-200"
               aria-label="Toggle mobile menu"
             >
               {isMobileMenuOpen ? (
-                <X className="w-6 h-6" />
+                <X className="w-4 h-4" />
               ) : (
-                <Menu className="w-6 h-6" />
+                <Menu className="w-4 h-4" />
               )}
             </button>
           </div>
@@ -86,40 +81,25 @@ const Navbar = () => {
 
         {/* Mobile Navigation Menu */}
         {isMobileMenuOpen && (
-          <div className="md:hidden animate-fade-in">
-            <div className="px-2 pt-2 pb-3 space-y-1 border-t border-hero-badge-border">
+          <div className="md:hidden animate-fade-in pb-6 pt-2">
+            <div className="flex flex-col gap-5 px-4 pb-2">
               {navLinks.map((link) => (
-                link.href.startsWith('/') ? (
-                  <Link
-                    key={link.name}
-                    to={link.href}
-                    className="text-hero-muted hover:text-hero-foreground block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                  >
-                    {link.name}
-                  </Link>
-                ) : (
-                  <a
-                    key={link.name}
-                    href={link.href}
-                    className="text-hero-muted hover:text-hero-foreground block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                  >
-                    {link.name}
-                  </a>
-                )
-              ))}
-              <div className="flex flex-col space-y-2 px-3 pt-4">
-                <Button 
-                  variant="ghost" 
-                  className="text-hero-muted hover:text-hero-foreground justify-start"
+                <Link
+                  key={link.name}
+                  to={link.href}
+                  className="font-body text-xs tracking-widest text-muted-foreground hover:text-accent uppercase transition-colors duration-300"
+                  onClick={() => setIsMobileMenuOpen(false)}
                 >
-                  Sign In
-                </Button>
-                <Button variant="hero" className="w-full rounded-[10px]">
-                  Get Started
-                </Button>
-              </div>
+                  {link.name}
+                </Link>
+              ))}
+              <Link
+                to="/contact"
+                className="w-full py-3 border border-accent/30 hover:border-accent font-body text-[10px] tracking-widest uppercase text-center transition-colors duration-300 bg-accent/5 hover:bg-accent/15 text-accent block mt-2 rounded-xl"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                Start Inquiry
+              </Link>
             </div>
           </div>
         )}
@@ -127,5 +107,4 @@ const Navbar = () => {
     </nav>
   );
 };
-
 export default Navbar;

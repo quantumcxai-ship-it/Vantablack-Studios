@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { ChevronLeft, ChevronRight, Target, Zap, TrendingUp, Database, Users, Clock, Shield, CheckCircle } from "lucide-react";
+import { AnimatedContainer, AnimatedItem } from "@/components/animations";
 
 const CaseStudiesSection = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -52,19 +53,21 @@ const CaseStudiesSection = () => {
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col items-center gap-16">
           {/* Header Section */}
-          <div className="flex flex-col items-center gap-6 text-center">
-            <span className="text-hero-foreground text-base font-normal leading-relaxed">
-              Case Studies
-            </span>
-            <h2 className="text-hero-foreground text-4xl lg:text-5xl xl:text-6xl font-normal leading-tight max-w-4xl">
-              See How Smart AI Automation Transforms Businesses
-            </h2>
-          </div>
+          <AnimatedContainer direction="up" delay={0.1}>
+            <div className="flex flex-col items-center gap-6 text-center">
+              <span className="text-hero-foreground text-base font-normal leading-relaxed">
+                Case Studies
+              </span>
+              <h2 className="text-hero-foreground text-4xl lg:text-5xl xl:text-6xl font-normal leading-tight max-w-4xl">
+                See How Smart AI Automation Transforms Businesses
+              </h2>
+            </div>
+          </AnimatedContainer>
 
           {/* Main Content */}
           <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20 w-full">
             {/* Image Container */}
-            <div className="flex-1 max-w-2xl">
+            <AnimatedItem direction="left" delay={0.2} className="flex-1 max-w-2xl">
               <div className="relative w-full aspect-square lg:h-[577px] lg:aspect-auto overflow-hidden rounded-[30px]">
                 {/* Background Image */}
                 <img 
@@ -82,10 +85,10 @@ const CaseStudiesSection = () => {
                   />
                 </div>
               </div>
-            </div>
+            </AnimatedItem>
 
             {/* Content Container */}
-            <div className="flex-1 max-w-2xl">
+            <AnimatedItem direction="right" delay={0.2} className="flex-1 max-w-2xl">
               <div className="flex flex-col gap-12 lg:gap-20">
                 {/* Testimonial Section */}
                 <div className="flex flex-col gap-8">
@@ -129,7 +132,7 @@ const CaseStudiesSection = () => {
                   ))}
                 </div>
               </div>
-            </div>
+            </AnimatedItem>
           </div>
         </div>
       </div>
