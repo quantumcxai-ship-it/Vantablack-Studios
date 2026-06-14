@@ -1,73 +1,69 @@
-# Welcome to your Lovable project
+# Vantablack Studios | Luxury Interior Design & Architecture
 
-## Project info
+An elite, immersive portfolio website for **Vantablack Studios**—an architectural and interior design firm dedicated to sculpting atmospheric silence, raw geological patinas, and premium minimal structures.
 
-**URL**: https://lovable.dev/projects/07a7f516-6c6d-4194-9a62-99315e7dc547
+---
 
-## How can I edit this code?
+## ✦ The Design Philosophy
+**"The Architecture of Silence"**
+Vantablack Studios rejects loud ornamentation in favor of deep shadows, monolithic raw concrete volumes, charred wood surfaces, and hand-brushed antique brass hairline details. The website is styled to reflect this dark, premium aesthetic:
+* **Curated Palette:** Pure charcoal/black backings contrasted with HSL-tailored warm gold and brass highlights.
+* **Premium Glassmorphism:** Custom frosted glass UI panels, input cards, select fields, and pill buttons with inner highlight shadows.
+* **Cinematic Motion:** Fluid scroll-linked behaviors and responsive micro-animations that make the interface feel alive and tactile.
 
-There are several ways of editing your application.
+---
 
-**Use Lovable**
+## ✦ Core Features
+* **Immersive Video Hero:** A full-bleed intro backdrop displaying high-end design footage fading in smoothly over a black slate.
+* **Interactive Project Showcases:** 
+  * Four unique detail pages (Obsidian House, Elysium Pavilion, Atrium of Shadows, Villa Sole) showcasing distinct hero shots, material lists, and high-quality individual gallery layouts.
+  * Seamless horizontal scroll tracks featuring responsive hover zooms and magnetic transition triggers.
+* **Material Curations (Journal):** Dynamic essays detailing materials (charred Shou Sugi Ban cedar, basalt pools, copper alloy patinas) with alternating left/right sweeping slide entrance animations.
+* **Custom Glassmorphism Contact Intake:** A fully-styled, unified client form featuring custom focus brass glows and glass selection items.
+* **Fluid Layouts:** Unified mobile responsiveness ensuring all interactive elements, animations, and videos scale correctly on mobile screens.
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/07a7f516-6c6d-4194-9a62-99315e7dc547) and start prompting.
+---
 
-Changes made via Lovable will be committed automatically to this repo.
+## ✦ Tech Stack
+* **Build Tool:** [Vite](https://vite.dev/) (Fast ESM bundler)
+* **Library:** [React](https://react.dev/) + [TypeScript](https://www.typescriptlang.org/)
+* **Animations:** [GSAP (GreenSock)](https://gsap.com/) + ScrollTrigger
+* **Styles:** [Tailwind CSS](https://tailwindcss.com/) + Custom HSL design tokens
+* **Icons:** [Lucide React](https://lucide.dev/)
+* **UI Components:** [shadcn/ui](https://ui.shadcn.com/)
 
-**Use your preferred IDE**
+---
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+## ✦ Local Development Setup
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+To run this project locally, make sure you have [Node.js](https://nodejs.org/) installed, then run:
 
-Follow these steps:
+### 1. Clone the repository
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+2. Install dependencies
+bash
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
 
-# Step 3: Install the necessary dependencies.
-npm i
+npm install
+3. Run the development server
+bash
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+
 npm run dev
-```
+Open http://localhost:8080 in your browser to view the site.
 
-**Edit a file directly in GitHub**
+4. Create a production build
+bash
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
 
-**Use GitHub Codespaces**
+npm run build
+✦ Deployment
+This project is optimized for deployment on Vercel:
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/07a7f516-6c6d-4194-9a62-99315e7dc547) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+Connect your Vercel account to the GitHub repository.
+Vercel will auto-detect the Vite configuration and build target.
+Every push to the main branch will automatically build and deploy the update live.
+Created by Baibhab Bose - QuantumCX
+```bash
+git clone https://github.com/quantumcxai-ship-it/Vantablack-Studios.git
+cd Vantablack-Studios
