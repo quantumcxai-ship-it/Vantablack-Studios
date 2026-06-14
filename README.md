@@ -39,27 +39,34 @@ Vantablack Studios rejects loud ornamentation in favor of deep shadows, monolith
 To run this project locally, make sure you have [Node.js](https://nodejs.org/) installed, then run:
 
 ### 1. Clone the repository
-
-2. Install dependencies
-bash
-npm install
-
-3. Run the development server
-bash
-npm run dev
-Open http://localhost:8080 in your browser to view the site.
-
-4. Create a production build
-bash
-npm run build
-
-✦ Deployment
-This project is optimized for deployment on Vercel:
-
-Connect your Vercel account to the GitHub repository.
-Vercel will auto-detect the Vite configuration and build target.
-Every push to the main branch will automatically build and deploy the update live.
-Created by Baibhab Bose - QuantumCX
 ```bash
 git clone https://github.com/quantumcxai-ship-it/Vantablack-Studios.git
 cd Vantablack-Studios
+```
+
+### 2. Install dependencies
+```bash
+npm install
+```
+
+### 3. Run the development server
+```bash
+npm run dev
+```
+Open [http://localhost:8080](http://localhost:8080) in your browser to view the site.
+
+### 4. Create a production build
+```bash
+npm run build
+```
+
+---
+
+## ✦ Deployment
+This project is optimized for deployment on **Vercel**:
+1. Connect your Vercel account to the GitHub repository.
+2. Vercel will auto-detect the Vite configuration and build target.
+3. Every push to the `main` branch will automatically build and deploy the update live.
+
+---
+*Created by **Baibhab Bose - QuantumCX***

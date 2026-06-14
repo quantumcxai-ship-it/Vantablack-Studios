@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 
@@ -7,9 +7,38 @@ export const Navbar = () => {
   const location = useLocation();
   const isHomePage = location.pathname === "/";
 
-  const toggleMobileMenu = () => {
-    setIsMobileMenuOpen(!isMobileMenuOpen);
+  // Check if link is active
+  const isLinkActive = (href: string) => {
+    if (href === "/") {
+      return location.pathname === "/";
+    }
+    return location.pathname.startsWith(href);
   };
+
+  const isContactActive = location.pathname === "/contact";
+
+  // Lock body scroll when mobile menu is open to prevent Lenis touch interception
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isMobileMenuOpen]);
+
+  // Close mobile menu on screen resize to desktop
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 768) {
+        setIsMobileMenuOpen(false);
+      }
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   const navLinks = [
     { name: "Home", href: "/" },
@@ -20,9 +49,9 @@ export const Navbar = () => {
 
   return (
     <nav 
-      className={`absolute top-6 left-1/2 -translate-x-1/2 w-[90%] max-w-5xl z-50 backdrop-blur-xl border border-accent/15 shadow-[0_10px_30px_rgba(0,0,0,0.5)] transition-all duration-300 ${
+      className={`fixed top-4 md:top-6 left-1/2 -translate-x-1/2 w-[90%] max-w-5xl z-50 backdrop-blur-xl border border-accent/15 shadow-[0_10px_30px_rgba(0,0,0,0.5)] transition-all duration-300 ${
         isMobileMenuOpen ? 'rounded-2xl' : 'rounded-full'
-      } ${isHomePage ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}
+      } ${isHomePage ? 'md:opacity-0 md:pointer-events-none opacity-100' : 'opacity-100'}`}
       style={{
         background: "rgba(0, 0, 0, 0.65)"
       }}
@@ -41,15 +70,22 @@ export const Navbar = () => {
           {/* Desktop Navigation */}
           <div className="hidden md:block">
             <div className="flex items-center space-x-10">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.name}
-                  to={link.href}
-                  className="font-body text-[11px] tracking-widest text-muted-foreground hover:text-accent uppercase transition-colors duration-300"
-                >
-                  {link.name}
-                </Link>
-              ))}
+              {navLinks.map((link) => {
+                const active = isLinkActive(link.href);
+                return (
+                  <Link
+                    key={link.name}
+                    to={link.href}
+                    className={`font-body text-[11px] tracking-widest uppercase transition-all duration-300 relative py-1 ${
+                      active 
+                        ? "text-accent font-medium after:absolute after:bottom-0 after:left-0 after:w-full after:h-[1px] after:bg-accent" 
+                        : "text-muted-foreground hover:text-accent after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1px] after:bg-accent hover:after:w-full after:transition-all after:duration-300"
+                    }`}
+                  >
+                    {link.name}
+                  </Link>
+                );
+              })}
             </div>
           </div>
 
@@ -57,7 +93,11 @@ export const Navbar = () => {
           <div className="hidden md:flex items-center">
             <Link 
               to="/contact"
-              className="inline-flex items-center justify-center px-5 py-2 border border-accent/30 hover:border-accent font-body text-[9px] tracking-widest uppercase transition-colors duration-300 bg-accent/5 hover:bg-accent/15 text-accent rounded-full"
+              className={`inline-flex items-center justify-center px-5 py-2 border font-body text-[9px] tracking-widest uppercase transition-all duration-300 rounded-full ${
+                isContactActive
+                  ? "bg-accent text-black border-accent font-semibold shadow-[0_4px_10px_rgba(201,169,97,0.3)]"
+                  : "bg-accent/5 hover:bg-accent/15 text-accent border-accent/30 hover:border-accent"
+              }`}
             >
               Start Inquiry
             </Link>
@@ -82,20 +122,32 @@ export const Navbar = () => {
         {/* Mobile Navigation Menu */}
         {isMobileMenuOpen && (
           <div className="md:hidden animate-fade-in pb-6 pt-2">
-            <div className="flex flex-col gap-5 px-4 pb-2">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.name}
-                  to={link.href}
-                  className="font-body text-xs tracking-widest text-muted-foreground hover:text-accent uppercase transition-colors duration-300"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  {link.name}
-                </Link>
-              ))}
+            <div className="flex flex-col gap-3 px-4 pb-2">
+              {navLinks.map((link) => {
+                const active = isLinkActive(link.href);
+                return (
+                  <Link
+                    key={link.name}
+                    to={link.href}
+                    className={`font-body text-sm tracking-widest uppercase transition-all duration-300 py-3 px-4 w-full block rounded-xl flex items-center justify-between ${
+                      active 
+                        ? "text-accent bg-accent/10 font-medium border-l-2 border-accent" 
+                        : "text-muted-foreground hover:text-accent hover:bg-accent/5"
+                    }`}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    <span>{link.name}</span>
+                    {active && <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />}
+                  </Link>
+                );
+              })}
               <Link
                 to="/contact"
-                className="w-full py-3 border border-accent/30 hover:border-accent font-body text-[10px] tracking-widest uppercase text-center transition-colors duration-300 bg-accent/5 hover:bg-accent/15 text-accent block mt-2 rounded-xl"
+                className={`w-full py-3 border font-body text-[10px] tracking-widest uppercase text-center transition-all duration-300 block mt-2 rounded-xl ${
+                  isContactActive
+                    ? "bg-accent text-black border-accent font-semibold shadow-[0_4px_12px_rgba(201,169,97,0.3)]"
+                    : "bg-accent/5 hover:bg-accent/15 text-accent border-accent/30 hover:border-accent"
+                }`}
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 Start Inquiry
