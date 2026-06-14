@@ -42,21 +42,17 @@ To run this project locally, make sure you have [Node.js](https://nodejs.org/) i
 
 2. Install dependencies
 bash
-
-
 npm install
+
 3. Run the development server
 bash
-
-
 npm run dev
 Open http://localhost:8080 in your browser to view the site.
 
 4. Create a production build
 bash
-
-
 npm run build
+
 ✦ Deployment
 This project is optimized for deployment on Vercel:
 
