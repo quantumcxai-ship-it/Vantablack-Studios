@@ -117,7 +117,7 @@ export const Navbar = () => {
           {/* Mobile menu button */}
           <div className="md:hidden">
             <button
-              onClick={toggleMobileMenu}
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               className="text-foreground hover:text-accent p-2 transition-colors duration-200"
               aria-label="Toggle mobile menu"
             >
