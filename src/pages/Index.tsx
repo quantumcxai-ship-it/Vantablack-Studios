@@ -135,14 +135,15 @@ export const Index = () => {
                 const navElement = document.querySelector("nav");
                 if (navElement) {
                   navElement.classList.remove("pointer-events-none");
+                  navElement.classList.remove("md:pointer-events-none");
                 }
               }
             },
             "<" // Start at the same time as the title animation
           );
         } else {
-          // If loaded scrolled down, ensure nav is hidden
-          gsap.set("nav", { opacity: 0, pointerEvents: "none" });
+          // If loaded scrolled down, ensure nav is visible and interactive
+          gsap.set("nav", { opacity: 1, clearProps: "all" });
         }
 
         tl.fromTo([subtitle, arrow], 

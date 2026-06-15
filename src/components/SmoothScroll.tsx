@@ -22,6 +22,7 @@ export const SmoothScroll = ({ children }: { children: React.ReactNode }) => {
     });
 
     lenisRef.current = lenis;
+    (window as any).lenis = lenis; // Expose globally
 
     lenis.on('scroll', ScrollTrigger.update);
 
@@ -36,6 +37,7 @@ export const SmoothScroll = ({ children }: { children: React.ReactNode }) => {
       lenis.destroy();
       gsap.ticker.remove(rafHandler);
       lenisRef.current = null;
+      (window as any).lenis = null; // Clean up global reference
     };
   }, []);
 
