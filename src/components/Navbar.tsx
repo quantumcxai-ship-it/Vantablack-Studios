@@ -60,7 +60,7 @@ export const Navbar = () => {
   return (
     <nav 
       data-lenis-prevent
-      className={`fixed top-4 md:top-6 left-1/2 -translate-x-1/2 w-[90%] max-w-5xl z-50 backdrop-blur-xl border border-accent/15 shadow-[0_10px_30px_rgba(0,0,0,0.5)] transition-all duration-300 ${
+      className={`fixed md:absolute top-4 md:top-6 left-1/2 -translate-x-1/2 w-[90%] max-w-5xl z-50 backdrop-blur-xl border border-accent/15 shadow-[0_10px_30px_rgba(0,0,0,0.5)] transition-all duration-300 ${
         isMobileMenuOpen ? 'rounded-2xl' : 'rounded-full'
       } ${isHomePage ? 'md:opacity-0 md:pointer-events-none opacity-100' : 'opacity-100'}`}
       style={{
